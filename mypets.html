@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mis Mascotas y Módulos · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/mypets.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img src="petnova-assets/logo horizontal sin slogan y fondo blanco.jpg" alt="Pet Nova" style="height: 38px; width: auto; display: block;">
+</a>
+<nav aria-label="Principal">
+<a href="dashboard.html">Panel</a>
+<a href="mypets.html" class="active">Mis mascotas</a>
+<a href="pawalert.html">Paw Alert</a>
+<a href="moments.html">Pet Moments</a>
+<a href="index.html" data-logout>Salir</a>
+</nav>
+</header>
+
+<main class="page">
+<h1>Gestión de Mascotas</h1>
+<p class="muted">Administra el perfil médico, agenda, comunidad y rutas de tus compañeros en La Chorrera.</p>
+
+<!-- Formulario para Registrar Mascota -->
+<section class="card add" id="pet-form-section">
+<h2>Registrar nueva mascota</h2>
+<form id="pet-form">
+<div class="fields">
+<label>Nombre de la mascota<input type="text" name="petName" required maxlength="30" placeholder="Ej. Luna"></label>
+<label>Especie<select name="species"><option>Perro</option><option>Gato</option><option>Ave</option><option>Otro</option></select></label>
+<label>Edad<input type="text" name="age" required maxlength="20" placeholder="Ej. 3 años"></label>
+<label>Peso (kg)<input type="number" name="weight" min="0" max="200" step="0.1" placeholder="Ej. 12.5"></label>
+<label>Estado de vacunación<select name="vaccination"><option>Al día</option><option>Pendientes</option><option>Sin vacunas</option><option>No estoy seguro</option></select></label>
+<label>Condición especial<input type="text" name="condition" maxlength="80" placeholder="Ej. Ninguna o alergia al pollo"></label>
+<label>Notas médicas<input type="text" name="notes" maxlength="300" placeholder="Veterinario de confianza, indicaciones..."></label>
+</div>
+<p class="msg" id="pet-msg" role="alert" hidden></p>
+<button type="submit" class="btn btn-primary">Guardar mascota</button>
+</form>
+</section>
+
+<!-- Listado de Mascotas Registradas -->
+<h2>Tus compañeros registrados</h2>
+<section class="pets" id="pet-list"></section>
+
+<!-- Pestañas de Subfunciones (Paw Planner, Community, Huellitas) -->
+<section class="submodule-section" style="margin-top: 40px;">
+  <div class="submodules-nav" role="tablist">
+    <button type="button" class="submodule-tab active" data-target="planner">🗓️ Paw Planner</button>
+    <button type="button" class="submodule-tab" data-target="community">💬 My Pet Community</button>
+    <button type="button" class="submodule-tab" data-target="mapview">🗺️ Huellitas al Camino</button>
+  </div>
+
+  <!-- Contenido: Paw Planner -->
+  <div id="planner" class="submodule-content card-panel">
+    <h3>Paw Planner · Citas y Vacunas</h3>
+    <p class="muted">Controla las próximas fechas importantes de salud para tus mascotas.</p>
+    <form id="planner-form" style="display: grid; gap: 15px; margin-top: 15px;">
+      <label>Título del evento / Vacuna<input type="text" id="reminder-title" required placeholder="Ej. Refuerzo antirrábico"></label>
+      <label>Fecha programada<input type="date" id="reminder-date" required></label>
+      <label>Categoría
+        <select id="reminder-category">
+          <option value="Vaccines">Vacuna</option>
+          <option value="Appointments">Cita Veterinaria</option>
+          <option value="Reminders">Recordatorio general</option>
+        </select>
+      </label>
+      <button type="submit" class="btn btn-primary">Añadir al calendario</button>
+    </form>
+    <ul id="planner-list" style="margin-top: 20px; list-style: none; padding: 0;"></ul>
+  </div>
+
+  <!-- Contenido: Community -->
+  <div id="community" class="submodule-content card-panel" style="display: none;">
+    <h3>My Pet Community (La Chorrera)</h3>
+    <p class="muted">Comparte qué está haciendo tu mascota hoy con otros dueños locales.</p>
+    <form id="community-form" class="post-box" style="display: grid; gap: 15px; margin-top: 15px;">
+      <label>¿Qué está haciendo tu mascota?<textarea id="post-input" rows="3" required placeholder="Ej. Disfrutando la tarde en el parque lineal de La Chorrera..."></textarea></label>
+      <button type="submit" class="btn btn-primary">Publicar nota</button>
+    </form>
+    <div id="community-feed" style="margin-top: 20px; display: grid; gap: 15px;"></div>
+  </div>
+
+  <!-- Contenido: Huellitas al Camino -->
+  <div id="mapview" class="submodule-content card-panel" style="display: none;">
+    <h3>Huellitas al Camino · Mapa y Puntos Pet-Friendly</h3>
+    <p class="muted">Encuentra veterinarias, parques y tiendas cercanas en Panamá Oeste.</p>
+    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center; margin-top: 15px;">
+      <p style="font-weight: 600; margin-bottom: 10px;">📍 Ubicación actual: La Chorrera, Centro</p>
+      <iframe title="Mapa La Chorrera" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=-79.82%2C8.86%2C-79.75%2C8.90&amp;layer=mapnik&amp;marker=8.88%2C-79.78" style="width: 100%; height: 250px; border: none; border-radius: 8px;"></iframe>
+      <div style="margin-top: 15px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <span style="background: #e2d9f3; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 500;">🏥 Clínicas Veterinarias</span>
+        <span style="background: #e2d9f3; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 500;">🌳 Parques Pet-Friendly</span>
+        <span style="background: #e2d9f3; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 500;">🛒 Tiendas de Mascotas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/mypets.js"></script>
+</body>
+</html>

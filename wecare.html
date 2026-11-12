@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>We Care · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/wecare.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/logo-pet-nova-horizontal.png" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<a href="pawalert.html">Paw Alert</a>
+<a href="wecare.html" class="active">We Care</a>
+<a href="moments.html">Pet Moments</a>
+<a href="index.html" data-logout>Salir</a>
+<a href="perfil.html" class="profile-avatar" id="profile-avatar" aria-label="Abrir perfil" title="Perfil"></a>
+</nav>
+</header>
+<main class="page">
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__copy">
+    <a class="back-link" href="dashboard.html">← Volver al panel</a>
+    <span class="eyebrow">CUIDADOS CON RESPALDO</span>
+    <h1 id="hero-title">Cuidar mejor empieza con buena información.</h1>
+    <p>Consejos claros y jornadas cercanas para acompañarte en cada etapa de la vida de tu mascota.</p>
+    <div class="hero__actions">
+      <a class="btn btn-primary" href="#articulos">Explorar consejos</a>
+      <a class="text-link" href="#jornadas">Ver jornadas próximas <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+  <div class="hero__collage" aria-hidden="true">
+    <img class="hero__image hero__image--main" src="petnova-assets/07fc70b2ebea6f8e443dffa8ceeda5d6.jpg" alt="">
+    <img class="hero__image hero__image--top" src="petnova-assets/5c11a58dfac731d2833e48211d9dc9f6.jpg" alt="">
+    <img class="hero__image hero__image--bottom" src="petnova-assets/0bec61dad5f0b657afa665d09a73fd9e.jpg" alt="">
+    <div class="hero__note"><div><strong>We Care</strong><small>Guías y jornadas para su bienestar</small></div></div>
+  </div>
+</section>
+<section class="block" id="articulos" aria-labelledby="articulos-title">
+<div class="block-head">
+<div>
+<span class="eyebrow">PARA CADA DÍA</span>
+<h2 id="articulos-title">Temas que vale la pena conocer</h2>
+<p class="section-intro">Guías prácticas para tomar mejores decisiones sobre su bienestar.</p>
+</div>
+<button class="btn btn-outline" type="button" id="open-guide">Ver todos los temas</button>
+</div>
+<div class="article-filters" id="article-filters" role="group" aria-label="Filtrar artículos por tema">
+  <button class="filter-btn is-active" type="button" data-filter="Todos" aria-pressed="true">Todos</button>
+  <button class="filter-btn" type="button" data-filter="Perros" aria-pressed="false">Perros</button>
+  <button class="filter-btn" type="button" data-filter="Gatos" aria-pressed="false">Gatos</button>
+  <button class="filter-btn" type="button" data-filter="Alimentación" aria-pressed="false">Alimentación</button>
+  <button class="filter-btn" type="button" data-filter="Prevención" aria-pressed="false">Prevención</button>
+  <button class="filter-btn" type="button" data-filter="Comportamiento" aria-pressed="false">Comportamiento</button>
+</div>
+<div class="article-grid" id="collage"></div>
+</section>
+<section class="block" id="lecturas" aria-labelledby="lecturas-title" hidden>
+<div class="block-head">
+<div>
+<span class="eyebrow">SIGUE LEYENDO</span>
+<h2 id="lecturas-title">Más artículos</h2>
+</div>
+</div>
+<div class="stories-layout" id="stories-layout"></div>
+</section>
+<section class="block" id="jornadas" aria-labelledby="jornadas-title">
+<div class="block-head">
+<div>
+<span class="eyebrow">CERCA DE TI</span>
+<h2 id="jornadas-title">Próximas jornadas de vacunación</h2>
+<p class="section-intro">Encuentra una fecha y un lugar para mantener sus vacunas al día.</p>
+</div>
+<button class="btn btn-outline" type="button" id="use-location">Usar mi ubicación</button>
+</div>
+<p class="note" id="loc-note" role="status"></p>
+<div class="vdays" id="vdays" aria-live="polite"></div>
+</section>
+</main>
+<dialog class="guide-dialog" id="guide-dialog" aria-labelledby="guide-title">
+<div class="dialog-body">
+<button class="dialog-close" type="button" data-close aria-label="Cerrar">×</button>
+<h2 id="guide-title">Todo sobre el cuidado de tu mascota</h2>
+<p class="muted">La guía completa de We Care, todos los temas en un solo lugar.</p>
+<div class="guide-list" id="guide-list"></div>
+<p class="disclaimer">Resúmenes basados en las fuentes enlazadas; son informativos y no sustituyen la consulta con un veterinario.</p>
+</div>
+</dialog>
+<dialog class="vday-dialog" id="vday-dialog" aria-labelledby="vday-title">
+<div class="dialog-body">
+<button class="dialog-close" type="button" data-close aria-label="Cerrar">×</button>
+<span class="eyebrow">JORNADA DE VACUNACIÓN</span>
+<h2 id="vday-title"></h2>
+<dl class="vday-facts" id="vday-facts"></dl>
+<p id="vday-details"></p>
+<div class="dialog-actions">
+<a class="btn btn-ghost" id="vday-map" target="_blank" rel="noopener">Ver en el mapa</a>
+<button class="btn btn-primary" type="button" data-close>Cerrar</button>
+</div>
+</div>
+</dialog>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+<script src="js/wecare.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/dashboard.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/logo-pet-nova-horizontal.png" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<a href="pawalert.html">Paw Alert</a>
+<a href="wecare.html">We Care</a>
+<a href="moments.html">Pet Moments</a>
+<a href="index.html" data-logout>Salir</a>
+<a href="perfil.html" class="profile-avatar" id="profile-avatar" aria-label="Abrir perfil" title="Perfil"></a>
+</nav>
+</header>
+<main class="dashboard-page">
+<div class="dashboard-cover" role="img" aria-label="Foto de perfil de la mascota">
+  <img class="dashboard-cover__image" id="dashboard-cover-image" alt="" hidden>
+</div>
+<div class="dashboard-content">
+  <section class="profile-card" aria-labelledby="hello">
+    <div class="dashboard-avatar-wrap">
+      <div class="dashboard-avatar" id="dashboard-avatar" aria-hidden="true"></div>
+      <button class="dashboard-avatar-edit" id="edit-profile-photo" type="button" aria-label="Editar la foto de perfil de la mascota" title="Editar foto" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 5 3 3M4 20l4.2-.8L19 8.4a2.1 2.1 0 0 0-3-3L5.2 16.2 4 20Z"/></svg>
+      </button>
+    </div>
+    <span class="profile-pill">TU FAMILIA PET NOVA</span>
+    <h1 id="hello">Hola</h1>
+    <p class="profile-intro">Un espacio para cuidar y celebrar a quienes más quieres.</p>
+    <div class="profile-contact">
+      <div>
+        <span class="profile-contact__label">CUENTA</span>
+        <p class="owner" id="owner"></p>
+      </div>
+      <a class="profile-edit" href="perfil.html">Editar perfil <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <div class="dashboard-grid">
+    <section class="dashboard-card family-card" aria-labelledby="family-title">
+      <h2 id="family-title">Sobre tu familia</h2>
+      <dl class="family-details">
+        <div><dt>Mascotas registradas</dt><dd><span id="n-pets">0</span></dd></div>
+        <div><dt>Teléfono</dt><dd id="owner-phone">Aún no agregado</dd></div>
+        <div><dt>Ciudad</dt><dd id="owner-city">Aún no agregada</dd></div>
+      </dl>
+      <a class="text-link" href="perfil.html">Ver información del perfil <span aria-hidden="true">→</span></a>
+    </section>
+
+    <section class="dashboard-card wellness-card" aria-labelledby="wellness-title">
+      <h2 id="wellness-title">Bienestar y seguridad</h2>
+      <a class="wellness-item" href="perfil.html">
+        <span class="wellness-item__number" id="n-todo">0</span>
+        <span><strong>Revisiones pendientes</strong><small>Vacunas o condiciones por revisar</small></span>
+        <span class="wellness-item__arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="wellness-item wellness-item--safe" id="alert-card" href="pawalert.html">
+        <span class="wellness-item__number" id="n-alerts">0</span>
+        <span><strong>Paw Alert</strong><small id="alert-text">Alertas activas: todas a salvo</small></span>
+        <span class="wellness-item__arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
+  </div>
+
+  <section class="dashboard-card pets-panel" aria-labelledby="pets-title">
+    <header class="dashboard-section-heading">
+      <div><span class="section-kicker">CUIDADO DIARIO</span><h2 id="pets-title">Tus mascotas</h2></div>
+      <a class="text-link" href="perfil.html">Administrar mascotas <span aria-hidden="true">→</span></a>
+    </header>
+    <section class="pets" id="pet-list" aria-label="Mascotas registradas"></section>
+  </section>
+
+  <section class="dashboard-card quick-panel" aria-labelledby="quick-title">
+    <header class="dashboard-section-heading">
+      <div><span class="section-kicker">A MANO PARA TI</span><h2 id="quick-title">Accesos rápidos</h2></div>
+    </header>
+    <section class="quick">
+      <a class="btn btn-primary" href="perfil.html">Agregar mascota</a>
+      <a class="btn btn-ghost" href="moments.html">Ver Pet Moments</a>
+      <a class="btn btn-sos" href="pawalert.html">Activar Paw Alert</a>
+    </section>
+  </section>
+</div>
+</main>
+<dialog class="photo-editor" id="photo-editor" aria-labelledby="photo-editor-title">
+  <form class="photo-editor__form">
+    <header class="photo-editor__header">
+      <div><span class="section-kicker">FOTO DE PERFIL</span><h2 id="photo-editor-title">Ajustar foto</h2></div>
+      <button class="photo-editor__close" type="button" data-photo-close aria-label="Cerrar">×</button>
+    </header>
+    <p class="photo-editor__hint">Arrastra la imagen para encuadrarla. Usa el control para acercar o alejar.</p>
+    <div class="photo-editor__crop" id="photo-editor-crop" tabindex="0" aria-label="Arrastra para ajustar la imagen o usa las flechas del teclado">
+      <img id="photo-editor-preview" alt="" hidden>
+      <span class="photo-editor__placeholder" id="photo-editor-placeholder">Selecciona una foto para empezar</span>
+    </div>
+    <label class="photo-editor__zoom" for="photo-editor-zoom">Zoom<input id="photo-editor-zoom" type="range" min="1" max="3" step="0.01" value="1" disabled></label>
+    <label class="photo-editor__upload">Elegir otra foto<input id="photo-editor-file" type="file" accept="image/*"></label>
+    <p class="photo-editor__error" id="photo-editor-error" role="alert" hidden></p>
+    <div class="photo-editor__actions">
+      <button class="photo-editor__cancel" type="button" data-photo-close>Cancelar</button>
+      <button class="photo-editor__save" type="submit" disabled>Guardar foto</button>
+    </div>
+  </form>
+</dialog>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

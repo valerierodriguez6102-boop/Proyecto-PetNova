@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pet Moments · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/moments.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/logo-pet-nova-horizontal.png" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<a href="pawalert.html">Paw Alert</a>
+<a href="wecare.html">We Care</a>
+<a href="moments.html" class="active">Pet Moments</a>
+<a href="index.html" data-logout>Salir</a>
+<a href="perfil.html" class="profile-avatar" id="profile-avatar" aria-label="Abrir perfil" title="Perfil"></a>
+</nav>
+</header>
+<main class="page">
+<h1>Pet Moments</h1>
+<p class="muted">Cada foto cuenta la historia de nuestras aventuras y de la belleza tranquila de la vida diaria juntos.</p>
+<form class="card upload" id="moment-form">
+<label>Agregar una foto<input type="file" name="photo" accept="image/*"></label>
+<label>Descripción<input type="text" name="caption" maxlength="60" placeholder="Ej. Primer paseo en la playa"></label>
+<button class="btn btn-primary">Subir momento</button>
+</form>
+<p class="msg" id="moment-msg" role="alert" hidden></p>
+<section class="gallery" id="gallery"></section>
+</main>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+<script src="js/moments.js"></script>
+</body>
+</html>

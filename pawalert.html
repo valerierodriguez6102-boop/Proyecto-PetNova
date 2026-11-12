@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paw Alert · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/pawalert.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/logo-pet-nova-horizontal.png" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<a href="pawalert.html" class="active">Paw Alert</a>
+<a href="wecare.html">We Care</a>
+<a href="moments.html">Pet Moments</a>
+<a href="index.html" data-logout>Salir</a>
+<a href="perfil.html" class="profile-avatar" id="profile-avatar" aria-label="Abrir perfil" title="Perfil"></a>
+</nav>
+</header>
+<main class="page">
+<div class="tabs" role="tablist" aria-label="Funciones de Paw Alert">
+<button type="button" role="tab" id="tab-lost" class="tab is-on" aria-selected="true" aria-controls="panel-lost">Mascotas perdidas</button>
+<button type="button" role="tab" id="tab-report" class="tab" aria-selected="false" aria-controls="panel-report">Denuncia anónima</button>
+</div>
+<div id="panel-lost" role="tabpanel" aria-labelledby="tab-lost">
+<div class="alerts-heading">
+<div>
+<h1>Mascotas perdidas</h1>
+<p class="muted">Revisa los reportes y ayuda a que cada mascota vuelva con su familia.</p>
+</div>
+<button class="btn btn-sos" type="button" data-open-lost>Reportar mi mascota perdida</button>
+</div>
+<p class="note" id="alerts-error" role="alert" hidden></p>
+<section id="alerts" aria-live="polite">
+  <article class="card alert-card demo-card">
+    <img class="alert-photo" src="petnova-assets/0bec61dad5f0b657afa665d09a73fd9e.jpg" alt="Ejemplo de foto de Nube">
+    <div class="alert-content">
+      <span class="alert-tag example-tag">Ejemplo</span>
+      <h3>Nube · Perro</h3>
+      <p class="muted">Última vez visto: Parque Central, La Chorrera · Hoy, 8:00 a. m.</p>
+      <p>Pequeña, pelaje claro y collar amarillo.</p>
+      <p>Contacto de ejemplo</p>
+      <button class="btn btn-primary" type="button" data-sample-found="0">Encontré esta mascota</button>
+    </div>
+  </article>
+  <article class="card alert-card demo-card">
+    <img class="alert-photo" src="petnova-assets/5c11a58dfac731d2833e48211d9dc9f6.jpg" alt="Ejemplo de foto de Michi">
+    <div class="alert-content">
+      <span class="alert-tag example-tag">Ejemplo</span>
+      <h3>Michi · Gato</h3>
+      <p class="muted">Última vez visto: Barrio Colón, cerca de la escuela · Ayer, 6:30 p. m.</p>
+      <p>Blanco y negro, ojos verdes.</p>
+      <p>Contacto de ejemplo</p>
+      <button class="btn btn-primary" type="button" data-sample-found="1">Encontré esta mascota</button>
+    </div>
+  </article>
+  <article class="card alert-card demo-card">
+    <img class="alert-photo" src="petnova-assets/617a032c91678c37343209bb6bef2f6d.jpg" alt="Ejemplo de foto de Bruno">
+    <div class="alert-content">
+      <span class="alert-tag example-tag">Ejemplo</span>
+      <h3>Bruno · Perro</h3>
+      <p class="muted">Última vez visto: Residencial La Arboleda · Hoy, 10:15 a. m.</p>
+      <p>Marrón con pecho blanco; responde a su nombre.</p>
+      <p>Contacto de ejemplo</p>
+      <button class="btn btn-primary" type="button" data-sample-found="2">Encontré esta mascota</button>
+    </div>
+  </article>
+</section>
+<p class="note" id="found-note" role="status" hidden></p>
+<dialog class="lost-dialog" id="lost-dialog" aria-labelledby="lost-dialog-title">
+<div class="lost-report">
+<button class="dialog-close" type="button" data-close-lost aria-label="Cerrar">×</button>
+<h2 id="lost-dialog-title">Mi mascota se perdió</h2>
+<p class="note" id="form-note" hidden></p>
+<p class="note" id="alert-error" role="alert" hidden></p>
+<form class="report" id="alert-form">
+<label>Mascota<select name="pet" id="pet-select"></select></label>
+<label>Último lugar donde la viste<input type="text" name="place" required placeholder="Ej. Parque Municipal, La Chorrera"></label>
+<label>Hora aproximada<input type="datetime-local" name="when"></label>
+<label>Detalles que ayuden a reconocerla<textarea name="notes" rows="3" placeholder="Collar azul, responde a su nombre"></textarea></label>
+<label>Foto de la mascota<input type="file" name="photo" accept="image/*"></label>
+<p class="photo-help">Si ya tiene una foto en Perfil, la usaremos automáticamente. Si no, sube una aquí.</p>
+<label>Teléfono de contacto<input type="tel" name="phone" required></label>
+<div class="lost-actions">
+<button class="btn btn-ghost" type="button" data-close-lost>Cancelar</button>
+<button class="btn btn-sos btn-lg" type="submit">Activar Paw Alert</button>
+</div>
+</form>
+</div>
+</dialog>
+<dialog class="found-dialog" id="found-dialog" aria-labelledby="found-dialog-title">
+<form class="found-report" id="found-form">
+<button class="dialog-close" type="button" data-close-found aria-label="Cerrar">×</button>
+<h2 id="found-dialog-title">Encontré esta mascota</h2>
+<div class="found-pet-preview" id="found-pet-preview"></div>
+<p class="note" id="found-form-error" role="alert" hidden></p>
+<input type="hidden" name="petId">
+<input type="hidden" name="ownerId">
+<label>Estado de la mascota
+<select name="state" required>
+<option value="">Selecciona una situación</option>
+<option>Resguardada en casa temporal</option>
+<option>Vista en la calle</option>
+<option>Herida o necesita rescate urgente</option>
+</select></label>
+<label>Especie
+<select name="species" required>
+<option value="">Selecciona una especie</option>
+<option>Perro</option><option>Gato</option><option>Ave</option><option>Otro</option>
+</select></label>
+<label>Raza y descripción física<input type="text" name="breedDescription" required maxlength="180" placeholder="Raza aproximada, color y tamaño"></label>
+<label>Señas particulares<input type="text" name="marks" maxlength="180" placeholder="Collar, placa, pañuelo, cicatrices o marcas"></label>
+<label>Ubicación exacta<input type="text" name="place" required maxlength="180" placeholder="Barriada, calle o punto de referencia"></label>
+<label>Hora aproximada<input type="datetime-local" name="when"></label>
+<label>Evidencia visual (foto o video)<input type="file" name="evidence" accept="image/*,video/*" required></label>
+<p class="photo-help">Los videos deben pesar 2 MB o menos.</p>
+<label>Notas adicionales<textarea name="notes" rows="3" maxlength="500" placeholder="Comportamiento, salud aparente u otros detalles"></textarea></label>
+<label>Tu nombre o alias<input type="text" name="reporterName" required maxlength="80"></label>
+<label>Teléfono o WhatsApp<input type="tel" name="phone" required maxlength="30"></label>
+<div class="found-actions">
+<button class="btn btn-ghost" type="button" data-close-found>Cancelar</button>
+<button class="btn btn-primary" type="submit">Enviar aviso</button>
+</div>
+</form>
+</dialog>
+<h2>Qué hacer mientras la buscas</h2>
+<ol class="steps">
+<li>Revisa los alrededores del último lugar donde la viste.</li>
+<li>Pregunta a vecinos y comercios cercanos, y muéstrales su foto.</li>
+<li>Llama a las veterinarias de la zona.</li>
+<li>Mantén tu teléfono disponible.</li>
+</ol>
+</div>
+<div id="panel-report" role="tabpanel" aria-labelledby="tab-report" hidden>
+<div class="report-head">
+<h1>Denuncia anónima</h1>
+<p class="muted">Avisa sobre maltrato, abandono u otras situaciones que afecten a un animal.</p>
+</div>
+<div class="notice">
+<div class="notice__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.2-7 10-4-1.8-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l2 2 3.5-4"/></svg></div>
+<div>
+<strong>100 % anónimo</strong>
+<p>Nunca pedimos ni guardamos tu nombre, tu correo ni ningún dato que te identifique.</p>
+</div>
+</div>
+<form class="card report-card" id="anon-form" novalidate>
+<label>Tipo de denuncia
+<select name="type">
+<option value="maltrato">Maltrato animal</option>
+<option value="abandono">Abandono o descuido</option>
+<option value="trafico">Venta o tráfico ilegal de animales</option>
+<option value="herido">Animal herido o en peligro</option>
+<option value="otro">Otro</option>
+</select>
+</label>
+<label>Descripción
+<textarea name="description" rows="4" maxlength="2000" placeholder="Describe lo que observaste con el mayor detalle posible"></textarea>
+</label>
+<label>Ubicación (opcional)
+<input type="text" name="location" maxlength="200" placeholder="Dirección o punto de referencia">
+</label>
+<label>Ciudad (opcional)
+<input type="text" name="city" maxlength="100" placeholder="Ciudad">
+</label>
+<p class="msg" id="anon-msg" role="alert" hidden></p>
+<div class="form-actions">
+<button type="button" class="btn btn-ghost" id="anon-cancel">Cancelar</button>
+<button class="btn btn-primary" id="anon-send">Enviar denuncia</button>
+</div>
+</form>
+<div class="card thanks" id="anon-thanks" hidden>
+<h2>Gracias por avisar</h2>
+<p>Tu denuncia se envió de forma anónima. No guardamos ningún dato que te identifique.</p>
+<button type="button" class="btn btn-ghost" id="anon-again">Hacer otra denuncia</button>
+</div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</main>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+<script src="js/pawalert.js"></script>
+<script src="js/denuncias.js"></script>
+</body>
+</html>

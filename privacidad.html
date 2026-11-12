@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política y privacidad · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/perfil.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/logo-pet-nova-horizontal.png" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<a href="pawalert.html">Paw Alert</a>
+<a href="wecare.html">We Care</a>
+<a href="moments.html">Pet Moments</a>
+<a href="index.html" data-logout>Salir</a>
+<a href="perfil.html" class="profile-avatar" id="profile-avatar" aria-label="Abrir perfil" title="Perfil"></a>
+</nav>
+</header>
+<main class="page privacy-page">
+  <header class="profile-heading">
+    <span class="account-drawer__eyebrow">TRANSPARENCIA</span>
+    <h1>Política y privacidad</h1>
+    <p class="muted">Un resumen de los datos que Pet Nova usa para ofrecer sus funciones.</p>
+  </header>
+  <div class="privacy-content">
+    <section class="card">
+      <h2>Datos de tu cuenta y mascotas</h2>
+      <p>La cuenta incluye tu nombre, correo electrónico, teléfono y ciudad. El perfil de cada mascota puede incluir nombre, especie, edad, peso, foto, estado de vacunación, condición especial y notas médicas.</p>
+    </section>
+    <section class="card">
+      <h2>Fotos y reportes</h2>
+      <p>Las fotos y descripciones que compartes en Pet Moments se guardan con tu perfil. Los reportes de Paw Alert pueden incluir información de contacto, ubicación, descripción y fotos para ayudar a encontrar una mascota.</p>
+    </section>
+    <section class="card">
+      <h2>Uso y almacenamiento</h2>
+      <p>Estos datos se usan para mostrar y mantener la información de tu cuenta y las funciones de Pet Nova. Los datos de cuenta y los reportes se almacenan en los servicios de Supabase que utiliza la aplicación; la sesión se conserva en el almacenamiento local del navegador.</p>
+    </section>
+    <section class="card">
+      <h2>Ubicación</h2>
+      <p>Si eliges ordenar las jornadas por cercanía, tu navegador comparte la ubicación con esta página para calcular el orden. La aplicación no la guarda ni la envía al servidor.</p>
+    </section>
+    <section class="card">
+      <h2>Acceso y eliminación</h2>
+      <p>Puedes revisar tus datos desde Perfil. Al confirmar la eliminación, se borran la cuenta, el perfil, las mascotas, las fotos, los momentos y los reportes de Paw Alert asociados, una vez activada la función segura de Supabase.</p>
+    </section>
+  </div>
+  <p class="muted privacy-note">Este resumen describe el funcionamiento actual de la aplicación. Antes de usarlo como política legal oficial, el responsable de Pet Nova debe completar los datos de contacto y cualquier información legal aplicable.</p>
+</main>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+</body>
+</html>

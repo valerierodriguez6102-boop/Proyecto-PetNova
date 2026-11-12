@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iniciar sesión · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+<main class="auth">
+<aside class="auth__side">
+<div class="arch">
+  <img class="arch__image" src="petnova-assets/logo en fondo blanco.jpg" alt="Logo de Pet Nova con ilustración de perro y gato">
+</div>
+<p>Todo para cuidar a tu mascota, en un solo lugar.</p>
+</aside>
+<section class="auth__main">
+<div class="tabs" role="tablist">
+<button type="button" role="tab" id="tab-login" class="tab is-on" aria-selected="true">Iniciar sesión</button>
+<button type="button" role="tab" id="tab-register" class="tab" aria-selected="false">Crear cuenta</button>
+</div>
+<form id="login-form">
+<h1>Bienvenido de nuevo</h1>
+<label>Correo<input type="email" name="email" required autocomplete="email"></label>
+<label>Contraseña
+  <span class="password-field">
+    <input type="password" name="password" required autocomplete="current-password">
+    <button class="password-toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false" data-password-toggle>
+      <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+      <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a15.7 15.7 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10.5 10.5 0 0 0 4-.8"/></svg>
+    </button>
+  </span>
+</label>
+<p class="msg" id="login-msg" role="alert" hidden></p>
+<button class="btn btn-primary btn-lg">Entrar a mi panel</button>
+</form>
+<form id="register-form" hidden>
+<h1>Crea tu cuenta</h1>
+<ol class="stepper">
+<li data-dot="1" class="current">Perfil de la mascota</li>
+<li data-dot="2">Historial médico</li>
+<li data-dot="3">Tus datos</li>
+</ol>
+<fieldset data-step="1">
+<legend>Perfil de la mascota</legend>
+<label>Nombre de la mascota<input type="text" name="petName" required maxlength="30"></label>
+<label>Especie<select name="species"><option>Perro</option><option>Gato</option><option>Ave</option><option>Otro</option></select></label>
+<div class="pair">
+<label>Edad<input type="text" name="age" required maxlength="20" placeholder="Ej. 3 años"></label>
+<label>Peso (kg)<input type="number" name="weight" min="0" max="200" step="0.1"></label>
+</div>
+<label>Foto (opcional)<input type="file" name="photo" id="photo" accept="image/*"></label>
+<div class="preview" id="preview" aria-live="polite">🐾</div>
+<div class="nav"><button type="button" class="btn btn-primary" data-next>Siguiente</button></div>
+</fieldset>
+<fieldset data-step="2" hidden>
+<legend>Historial médico</legend>
+<label>Estado de vacunación<select name="vaccination"><option>Al día</option><option>Pendientes</option><option>Sin vacunas</option><option>No estoy seguro</option></select></label>
+<label>Condición especial<input type="text" name="condition" maxlength="80" placeholder="Ej. Displasia de cadera"></label>
+<label>Notas médicas<textarea name="notes" rows="3" maxlength="300" placeholder="Alergias, medicamentos, indicaciones del veterinario"></textarea></label>
+<div class="nav"><button type="button" class="btn btn-ghost" data-back>Atrás</button><button type="button" class="btn btn-primary" data-next>Siguiente</button></div>
+</fieldset>
+<fieldset data-step="3" hidden>
+<legend>Tus datos</legend>
+<label>Nombre completo<input type="text" name="ownerName" required autocomplete="name"></label>
+<label>Correo<input type="email" name="email" required autocomplete="email"></label>
+<div class="pair">
+<label>Teléfono<input type="tel" name="phone" required autocomplete="tel"></label>
+<label>Ciudad<input type="text" name="city" required autocomplete="address-level2"></label>
+</div>
+<label>Contraseña (mínimo 8 caracteres)
+  <span class="password-field">
+    <input type="password" name="password" required minlength="8" autocomplete="new-password">
+    <button class="password-toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false" data-password-toggle>
+      <svg class="icon-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+      <svg class="icon-eye-off" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 3 18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path d="M9.9 5.2A10.7 10.7 0 0 1 12 5c6.4 0 10 7 10 7a15.7 15.7 0 0 1-3.1 3.8M6.2 6.2C3.5 8 2 12 2 12s3.6 7 10 7a10.5 10.5 0 0 0 4-.8"/></svg>
+    </button>
+  </span>
+</label>
+<p class="msg" id="register-msg" role="alert" hidden></p>
+<div class="nav"><button type="button" class="btn btn-ghost" data-back>Atrás</button><button class="btn btn-primary">Crear cuenta</button></div>
+</fieldset>
+</form>
+<a class="back" href="index.html">Volver al inicio</a>
+</section>
+</main>
+<script src="js/storage.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

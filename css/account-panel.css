@@ -1,0 +1,34 @@
+.account-drawer,.account-delete-dialog{color:var(--ink);background:#fff}
+.account-drawer{position:fixed;inset:0 0 0 auto;width:min(92vw,380px);max-width:none;height:100vh;max-height:100vh;margin:0;padding:0;border:0;border-left:1px solid var(--line);box-shadow:-16px 0 48px rgba(32,23,48,.18)}
+.account-drawer::backdrop,.account-delete-dialog::backdrop{background:rgba(32,23,48,.48);backdrop-filter:blur(2px)}
+.account-drawer__content{display:flex;min-height:100%;flex-direction:column;gap:1.4rem;overflow-y:auto;padding:1.5rem}
+.account-drawer__header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line)}
+.account-drawer__eyebrow{color:var(--teal);font-size:.72rem;font-weight:700;letter-spacing:.12em}
+.account-drawer__header h2{margin:.35rem 0;font-size:1.35rem}
+.account-drawer__header p{color:var(--muted);font-size:.86rem;overflow-wrap:anywhere}
+.account-drawer__close{display:grid;flex:none;width:2.4rem;height:2.4rem;place-items:center;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--ink);font:400 1.5rem/1 "Montserrat",sans-serif;cursor:pointer}
+.account-drawer__links{display:grid;gap:.45rem}
+.account-drawer__links a,.account-drawer__logout{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1rem;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font:600 .92rem "Montserrat",sans-serif;text-align:left;text-decoration:none;cursor:pointer}
+.account-drawer__links a:hover,.account-drawer__logout:hover{background:var(--sage)}
+.account-drawer__links a span{color:var(--teal)}
+.account-drawer__danger{margin-top:auto;padding-top:1rem;border-top:1px solid var(--line)}
+.account-drawer__delete{width:100%;padding:.75rem 1rem;border:1px solid rgba(209,40,63,.32);border-radius:12px;background:#fff;color:#a91f33;font:600 .9rem "Montserrat",sans-serif;text-align:left;cursor:pointer}
+.account-drawer__delete:hover{background:rgba(209,40,63,.08)}
+.account-delete-dialog{position:fixed;inset:0;width:min(92vw,460px);max-width:none;max-height:90vh;margin:auto;padding:0;border:1px solid var(--line);border-radius:18px;box-shadow:0 20px 70px rgba(32,23,48,.3)}
+.account-delete-dialog__body{position:relative;display:grid;gap:1rem;padding:1.6rem}
+.account-delete-dialog__body>.account-drawer__close{position:absolute;top:.8rem;right:.8rem}
+.account-delete-dialog__body h2{padding-right:2.5rem}
+.account-delete-dialog__body p{color:var(--muted);font-size:.92rem}
+.account-delete-dialog__body label{font-size:.86rem;font-weight:600}
+.account-delete-dialog__body input{font:inherit;padding:.65rem .75rem;border:1.5px solid var(--line);border-radius:12px}
+.account-delete-dialog__error{padding:.65rem .8rem;border-radius:10px;background:var(--alert-bg);color:var(--alert)!important}
+.account-delete-dialog__actions{display:flex;justify-content:flex-end;gap:.6rem;flex-wrap:wrap}
+.account-delete-dialog__actions button{padding:.65rem 1rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font:600 .85rem "Montserrat",sans-serif;cursor:pointer}
+.account-delete-dialog__actions .account-delete-dialog__submit{border-color:#a91f33;background:#a91f33;color:#fff}
+.account-delete-dialog__actions .account-delete-dialog__submit:disabled{border-color:var(--line);background:#eee;color:#777;cursor:not-allowed}
+.privacy-page .privacy-content{display:grid;gap:1rem}
+.privacy-page .privacy-content .card{display:grid;gap:.55rem}
+.privacy-page .privacy-content h2{margin:0}
+.privacy-page .privacy-content p,.privacy-page .privacy-note{color:var(--muted);font-size:.92rem}
+.privacy-page .privacy-note{margin-top:1.2rem}
+@media(prefers-reduced-motion:reduce){.account-drawer,.account-delete-dialog{scroll-behavior:auto}}

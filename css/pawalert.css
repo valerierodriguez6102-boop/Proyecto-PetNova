@@ -1,0 +1,136 @@
+/* ===== pawalert.css · Alerta de emergencia ===== */
+/* Paleta Pet Nova: púrpura, violeta, cian y teal */
+:root{--olive:#523F7A;--olive-d:#523F7A;--sage:rgba(130,104,213,.12);--sage-2:#8268D5;--paper:#fff;--ink:#523F7A;--muted:rgba(82,63,122,.8);--line:rgba(130,104,213,.3);--alert:#523F7A;--alert-bg:rgba(130,104,213,.14);--ok:#523F7A;--accent:#0CBDDC;--teal:#00869F;--r:18px}
+/* Reinicio de márgenes */
+*{box-sizing:border-box;margin:0}
+/* Texto general y fondo */
+body{font:400 1rem/1.65 "Montserrat",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+/* Títulos con tipografía serif */
+h1,h2,h3,.logo{font-family:"Montserrat",system-ui,sans-serif;line-height:1.15}
+h1{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:700}
+h2{font-size:clamp(1.35rem,2.8vw,1.8rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+a{color:inherit}
+.muted{color:var(--muted)}
+/* Botones: principal, contorno y emergencia */
+.btn{display:inline-block;padding:.65rem 1.25rem;border:2px solid transparent;border-radius:999px;font:600 1rem "Montserrat",sans-serif;text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.btn-primary{background:var(--olive);color:#fff}.btn-primary:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-ghost{color:var(--olive-d);border-color:var(--olive);background:transparent}.btn-ghost:hover{background:var(--sage);border-color:var(--teal)}
+.btn-sos{background:var(--alert);color:#fff}.btn-sos:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-lg{padding:.9rem 1.7rem}
+/* Foco visible para teclado */
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+/* Elementos ocultos por JavaScript */
+[hidden]{display:none!important}
+/* Logo */
+.logo{flex:none;font-weight:700;font-size:1.5rem;color:var(--olive-d);text-decoration:none}
+.logo__image{display:block;width:148px;height:54px;object-fit:contain;background:#fff}
+/* Menú superior de la app */
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 5vw;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar nav{display:flex;gap:.25rem;flex-wrap:wrap}
+.topbar nav a{display:flex;flex:0 0 128px;width:128px;min-width:0;align-items:center;justify-content:center;height:40px;padding:.4rem .5rem;border-radius:999px;text-decoration:none;font-weight:600;white-space:nowrap;color:var(--muted)}
+.topbar nav a:hover{background:var(--sage);color:var(--olive-d);box-shadow:inset 0 -2px var(--teal)}
+/* Enlace de la página actual */
+.topbar nav a.active{background:var(--olive);color:#fff}
+.topbar nav a.profile-avatar{flex:0 0 42px;width:42px;height:42px;min-width:42px;margin-left:auto;padding:0;overflow:hidden;border:1px solid var(--line);border-radius:50%;background:var(--sage);color:var(--olive-d);font-size:1rem;font-weight:700}
+.topbar nav a.profile-avatar:hover{background:var(--sage);color:var(--olive-d);box-shadow:0 0 0 3px var(--sage)}
+.topbar nav a.profile-avatar.active{background:var(--olive);color:#fff;box-shadow:0 0 0 3px var(--sage)}
+.profile-avatar img{display:block;width:100%;height:100%;object-fit:cover}
+/* Contenedor principal de la página */
+.page{max-width:1000px;margin:0 auto;padding:2.5rem 5vw 4rem}
+.page>h1{margin-bottom:.5rem}
+.page>.muted{margin-bottom:1.5rem}
+/* Tarjeta base */
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.3rem}
+/* Campos de formulario */
+label{display:grid;gap:.3rem;font-weight:600;font-size:.9rem}
+input,select,textarea{font:inherit;padding:.65rem .75rem;border:1.5px solid var(--line);border-radius:12px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--olive)}
+/* Mensaje de error */
+.msg{padding:.6rem .8rem;border-radius:12px;background:var(--alert-bg);color:var(--alert);font-weight:600;font-size:.9rem}
+/* Lista vacía */
+.empty{grid-column:1/-1;padding:2rem 1rem;text-align:center;color:var(--muted);border:2px dashed var(--sage-2);border-radius:var(--r)}
+/* Pie de página */
+.footer{padding:2rem 5vw;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+/* Celular: menú en dos filas */
+@media(max-width:760px){.topbar{flex-direction:column;align-items:flex-start}.topbar nav{width:100%}}
+@media(min-width:761px) and (max-width:950px){.topbar{flex-wrap:wrap}.topbar nav{width:100%;justify-content:center}}
+/* Títulos de sección */
+.page h2{margin:2rem 0 1rem}
+/* Encabezado y acceso rápido para reportar una pérdida */
+.alerts-heading{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:center;gap:1.5rem;margin-bottom:1.5rem;padding:1.4rem 1.5rem;background:#fff;border:1px solid var(--line);border-left:4px solid var(--olive);border-radius:var(--r);box-shadow:0 8px 24px rgba(32,23,48,.06)}
+.alerts-heading h1{margin-bottom:.35rem}
+.alerts-heading .muted{margin:0}
+.alerts-heading>.btn{grid-column:2;grid-row:1;justify-self:center;align-self:center}
+.note{margin-bottom:1rem;font-weight:600}
+.photo-help{margin-top:-.6rem;color:var(--muted);font-size:.85rem}
+/* Formulario de reporte */
+.report{display:grid;gap:.9rem}
+textarea{resize:vertical}
+/* Botón de alerta de emergencia */
+.report .btn-sos{justify-self:start}
+.report .btn-primary{justify-self:start}
+.report button:disabled{opacity:.65;cursor:wait}
+/* Lista de alertas activas */
+#alerts{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.15rem}
+.alert-card{position:relative;z-index:0;padding:0;overflow:hidden;border-color:rgba(82,63,122,.16);box-shadow:0 5px 18px rgba(32,23,48,.055);transition:transform .2s ease,box-shadow .2s ease}
+.alert-card:hover,.alert-card:focus-within{z-index:2;transform:translateY(-2px);box-shadow:0 12px 26px rgba(32,23,48,.12)}
+.alert-photo{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#f4f1f8}
+.alert-content{display:grid;align-content:start;gap:.55rem;padding:1.1rem}
+.alert-content h3{margin:.1rem 0;color:var(--ink)}
+.alert-content p{line-height:1.5}
+.alert-tag{justify-self:start;padding:.2rem .65rem;border-radius:999px;background:var(--alert-bg);color:var(--alert);font-size:.75rem;font-weight:700;letter-spacing:.02em}
+.example-tag{background:#f2eff8;color:var(--olive)}
+.alert-content .btn{justify-self:start;margin-top:.4rem}
+.alert-content button:disabled{opacity:.8;cursor:default}
+.sighting{display:grid;gap:.4rem;padding:.8rem;border-radius:14px;background:var(--sage)}
+.sighting-media{display:block;width:100%;max-height:280px;object-fit:contain;border-radius:10px;background:#fff}
+.lost-dialog,.found-dialog{position:fixed;inset:0;margin:auto;width:min(92vw,540px);max-height:90vh;padding:0;border:0;border-radius:var(--r);color:var(--ink);box-shadow:0 20px 70px rgba(32,23,48,.3);background:linear-gradient(180deg,#fff 0%,#f9f6ff 100%);border:1px solid rgba(130,104,213,.22);animation:dialogIn .24s ease-out}
+.lost-dialog::backdrop,.found-dialog::backdrop{background:rgba(32,23,48,.58);backdrop-filter:blur(2px)}
+.lost-report,.found-report{position:relative;display:grid;gap:.9rem;max-height:90vh;overflow-y:auto;padding:1.5rem}
+@keyframes dialogIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.lost-report h2,.found-report h2{margin:0 2rem 0 0}
+.dialog-close{position:absolute;top:.7rem;right:.8rem;width:2rem;height:2rem;border:0;border-radius:50%;background:var(--sage);color:var(--ink);font-size:1.4rem;cursor:pointer}
+.found-pet-preview{display:flex;align-items:center;gap:.8rem;padding:.7rem;border-radius:14px;background:var(--sage)}
+.found-pet-preview img{width:72px;height:72px;border-radius:12px;object-fit:cover}
+.found-pet-preview div{display:grid;gap:.2rem}
+.found-pet-preview span{color:var(--muted);font-size:.85rem}
+.lost-actions,.found-actions{display:flex;justify-content:flex-end;gap:.6rem;flex-wrap:wrap}
+/* Reduce movimiento sin perder el contraste de la tarjeta activa */
+@media(prefers-reduced-motion:reduce){.alert-card{transition:none}.alert-card:hover,.alert-card:focus-within{transform:none}}
+@media(max-width:600px){.alerts-heading{grid-template-columns:1fr}.alerts-heading>.btn{grid-column:1;grid-row:auto;justify-self:center}}
+/* Lista de pasos a seguir */
+.steps{padding-left:1.3rem;display:grid;gap:.4rem}
+
+/* ===== DENUNCIAS ANÓNIMAS (agregar al final de pawalert.css) ===== */
+
+/* Encabezado de la pestaña de denuncia */
+.report-head{margin-bottom:1.2rem}
+.report-head h1{margin-bottom:.4rem}
+
+/* Pestañas: Mascota perdida / Denuncia anónima */
+.tabs{display:inline-flex;gap:.25rem;background:#f3f0f8;padding:.3rem;border:1px solid var(--line);border-radius:999px;margin-bottom:1.25rem}
+.tab{border:0;background:transparent;padding:.62rem 1.2rem;border-radius:999px;font:600 .9rem "Montserrat",system-ui,sans-serif;color:var(--muted);cursor:pointer;transition:background .15s,color .15s,box-shadow .15s}
+.tab:hover{color:var(--olive-d);background:rgba(255,255,255,.65)}
+.tab.is-on{background:#fff;color:var(--olive-d);box-shadow:0 2px 7px rgba(32,23,48,.1)}
+
+/* Aviso de anonimato */
+.notice{display:flex;gap:.9rem;align-items:center;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1rem 1.2rem;margin-bottom:1rem;max-width:560px}
+.notice__icon{flex:none;width:40px;height:40px;border-radius:50%;background:var(--sage);color:var(--olive-d);display:grid;place-items:center}
+.notice p{color:var(--muted);font-size:.9rem}
+
+/* Formulario de denuncia anónima */
+.report-card{display:grid;gap:1.1rem;max-width:560px}
+.report-card textarea{resize:vertical}
+.form-actions{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+
+/* Mensaje de confirmación */
+.thanks{max-width:560px;display:grid;gap:.8rem;justify-items:start}
+.page .thanks h2{margin:0}
+
+/* Aviso emergente (toast) */
+.toast{position:fixed;right:1.2rem;bottom:1.2rem;z-index:50;max-width:320px;background:#201730;color:#fff;padding:.8rem 1.1rem;border-radius:12px;font-size:.9rem;font-weight:500;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:none}
+
+/* Celular */
+@media(max-width:560px){.tabs{display:flex}.tab{flex:1;padding:.55rem .5rem;font-size:.85rem}}

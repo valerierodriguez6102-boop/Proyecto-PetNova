@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perfil · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/perfil.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/logo-pet-nova-horizontal.png" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<a href="pawalert.html">Paw Alert</a>
+<a href="wecare.html">We Care</a>
+<a href="moments.html">Pet Moments</a>
+<a href="index.html" data-logout>Salir</a>
+<a href="perfil.html" class="profile-avatar active" id="profile-avatar" aria-label="Perfil" aria-current="page" title="Perfil"></a>
+</nav>
+</header>
+<main class="page">
+<header class="profile-heading">
+  <span class="eyebrow">TU CUENTA</span>
+  <h1>Perfil</h1>
+  <p class="muted">Consulta tus datos y administra la información de tus mascotas desde un solo lugar.</p>
+</header>
+<form class="card profile-card" id="profile-form">
+  <div>
+    <h2>Tus datos</h2>
+    <p class="muted">Mantén actualizada tu información de contacto.</p>
+  </div>
+  <div class="fields">
+    <label>Nombre completo<input type="text" name="name" required maxlength="80" autocomplete="name"></label>
+    <label>Correo electrónico<input type="email" name="email" readonly autocomplete="email"><small>Es el correo asociado a tu cuenta y no se puede cambiar aquí.</small></label>
+    <label>Teléfono<input type="tel" name="phone" maxlength="30" autocomplete="tel"></label>
+    <label>Ciudad<input type="text" name="city" maxlength="80" autocomplete="address-level2"></label>
+  </div>
+  <p class="msg" id="profile-msg" role="status" hidden></p>
+  <button class="btn btn-primary" type="submit">Guardar mis datos</button>
+</form>
+<section class="pets-section" aria-labelledby="pets-title">
+  <div class="section-heading">
+    <div>
+      <span class="eyebrow">CUIDADO Y SALUD</span>
+      <h2 id="pets-title">Mis mascotas</h2>
+    </div>
+    <p class="muted">Aquí puedes revisar y actualizar sus datos.</p>
+  </div>
+<section class="pets" id="pet-list"></section>
+<form class="card add" id="pet-form">
+<h3>Agregar otra mascota</h3>
+<p class="muted">Puedes registrar todas las mascotas de tu familia.</p>
+<div class="fields">
+<label>Nombre de la mascota<input type="text" name="petName" required maxlength="30"></label>
+<label>Especie<select name="species"><option>Perro</option><option>Gato</option><option>Ave</option><option>Otro</option></select></label>
+<label>Edad<input type="text" name="age" required maxlength="20" placeholder="Ej. 3 años"></label>
+<label>Peso (kg)<input type="number" name="weight" min="0" max="200" step="0.1"></label>
+<label>Foto (opcional)<input type="file" name="photo" accept="image/*"></label>
+<label>Estado de vacunación<select name="vaccination"><option>Al día</option><option>Pendientes</option><option>Sin vacunas</option><option>No estoy seguro</option></select></label>
+<label>Condición especial<input type="text" name="condition" maxlength="80"></label>
+<label>Notas médicas<input type="text" name="notes" maxlength="300"></label>
+</div>
+<p class="msg" id="pet-msg" role="alert" hidden></p>
+<button class="btn btn-primary" type="submit">Guardar mascota</button>
+</form>
+</section>
+</main>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+<script src="js/perfil.js"></script>
+</body>
+</html>

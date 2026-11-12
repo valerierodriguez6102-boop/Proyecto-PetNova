@@ -1,0 +1,90 @@
+/* ===== perfil.css · Perfil y gestión de mascotas ===== */
+/* Paleta Pet Nova: púrpura, violeta, cian y teal */
+:root{--olive:#523F7A;--olive-d:#523F7A;--sage:rgba(130,104,213,.12);--sage-2:#8268D5;--paper:#fff;--ink:#523F7A;--muted:rgba(82,63,122,.8);--line:rgba(130,104,213,.3);--alert:#523F7A;--alert-bg:rgba(130,104,213,.14);--ok:#523F7A;--accent:#0CBDDC;--teal:#00869F;--r:18px}
+/* Reinicio de márgenes */
+*{box-sizing:border-box;margin:0}
+/* Texto general y fondo */
+body{font:400 1rem/1.65 "Montserrat",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+/* Títulos con tipografía serif */
+h1,h2,h3,.logo{font-family:"Montserrat",system-ui,sans-serif;line-height:1.15}
+h1{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:700}
+h2{font-size:clamp(1.35rem,2.8vw,1.8rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+a{color:inherit}
+.muted{color:var(--muted)}
+/* Botones: principal, contorno y emergencia */
+.btn{display:inline-block;padding:.65rem 1.25rem;border:2px solid transparent;border-radius:999px;font:600 1rem "Montserrat",sans-serif;text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.btn-primary{background:var(--olive);color:#fff}.btn-primary:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-ghost{color:var(--olive-d);border-color:var(--olive);background:transparent}.btn-ghost:hover{background:var(--sage);border-color:var(--teal)}
+.btn-sos{background:var(--alert);color:#fff}.btn-sos:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-lg{padding:.9rem 1.7rem}
+/* Foco visible para teclado */
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+/* Elementos ocultos por JavaScript */
+[hidden]{display:none!important}
+/* Logo */
+.logo{flex:none;font-weight:700;font-size:1.5rem;color:var(--olive-d);text-decoration:none}
+.logo__image{display:block;width:148px;height:54px;object-fit:contain;background:#fff}
+/* Menú superior de la app */
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 5vw;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar nav{display:flex;gap:.25rem;flex-wrap:wrap}
+.topbar nav a{display:flex;flex:0 0 128px;width:128px;min-width:0;align-items:center;justify-content:center;height:40px;padding:.4rem .5rem;border-radius:999px;text-decoration:none;font-weight:600;white-space:nowrap;color:var(--muted)}
+.topbar nav a:hover{background:var(--sage);color:var(--olive-d);box-shadow:inset 0 -2px var(--teal)}
+/* Enlace de la página actual */
+.topbar nav a.active{background:var(--olive);color:#fff}
+.topbar nav a.profile-avatar{flex:0 0 42px;width:42px;height:42px;min-width:42px;margin-left:auto;padding:0;overflow:hidden;border:1px solid var(--line);border-radius:50%;background:var(--sage);color:var(--olive-d);font-size:1rem;font-weight:700}
+.topbar nav a.profile-avatar:hover{background:var(--sage);color:var(--olive-d);box-shadow:0 0 0 3px var(--sage)}
+.topbar nav a.profile-avatar.active{background:var(--olive);color:#fff;box-shadow:0 0 0 3px var(--sage)}
+.profile-avatar img{display:block;width:100%;height:100%;object-fit:cover}
+/* Contenedor principal de la página */
+.page{max-width:1000px;margin:0 auto;padding:2.5rem 5vw 4rem}
+.page>h1{margin-bottom:.5rem}
+.page>.muted{margin-bottom:1.5rem}
+/* Tarjeta base */
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:1.3rem}
+/* Campos de formulario */
+label{display:grid;gap:.3rem;font-weight:600;font-size:.9rem}
+input,select,textarea{font:inherit;padding:.65rem .75rem;border:1.5px solid var(--line);border-radius:12px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--olive)}
+/* Mensaje de error */
+.msg{padding:.6rem .8rem;border-radius:12px;background:var(--alert-bg);color:var(--alert);font-weight:600;font-size:.9rem}
+/* Lista vacía */
+.empty{grid-column:1/-1;padding:2rem 1rem;text-align:center;color:var(--muted);border:2px dashed var(--sage-2);border-radius:var(--r)}
+/* Pie de página */
+.footer{padding:2rem 5vw;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+/* Celular: menú en dos filas */
+@media(max-width:760px){.topbar{flex-direction:column;align-items:flex-start}.topbar nav{width:100%}}
+@media(min-width:761px) and (max-width:950px){.topbar{flex-wrap:wrap}.topbar nav{width:100%;justify-content:center}}
+/* Lista de tarjetas de mascota */
+.pets{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+/* Tarjeta de mascota */
+.pet{display:grid;gap:.4rem;justify-items:start}
+/* Foto de la mascota (marco tipo arco) */
+.avatar{width:72px;height:84px;border-radius:999px 999px 14px 14px;background:var(--sage);display:grid;place-items:center;font-size:2rem;overflow:hidden}
+.avatar img{width:100%;height:100%;object-fit:cover}
+/* Etiqueta de estado de vacunación */
+.tag{font-size:.8rem;font-weight:700;padding:.15rem .7rem;border-radius:999px;background:var(--sage);color:var(--olive-d)}
+.tag.good{background:rgba(12,189,220,.16);color:var(--ok)}.tag.bad{background:var(--alert-bg);color:var(--alert)}
+/* Datos médicos de la mascota */
+.details{display:grid;gap:.1rem;margin:.4rem 0;font-size:.9rem}
+.details dt{font-weight:700;margin-top:.4rem}.details dd{color:var(--muted);margin:0}
+.pet .btn{margin-top:.4rem;padding:.35rem .95rem;font-size:.9rem}
+/* Formulario para agregar mascota */
+.add{display:grid;gap:1rem;margin-bottom:2rem}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem}
+/* Botón de guardar mascota */
+.add .btn{justify-self:start}
+/* Perfil de la persona responsable */
+.profile-heading{display:grid;gap:.45rem;margin-bottom:1.75rem}
+.profile-heading .eyebrow,.section-heading .eyebrow{color:var(--teal);font-size:.72rem;font-weight:700;letter-spacing:.12em}
+.profile-card{display:grid;gap:1rem;margin-bottom:2.5rem}
+.profile-card h2,.add h3{margin:0}
+.profile-card .muted,.add>.muted{font-size:.9rem}
+.profile-card label small{color:var(--muted);font-size:.75rem;font-weight:400}
+.profile-card input[readonly]{background:rgba(130,104,213,.06);color:var(--muted)}
+.profile-card .btn{justify-self:start}
+.pets-section{margin-top:2rem}
+.section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.section-heading h2{margin-top:.35rem}
+.add{margin-bottom:1rem}
+@media(max-width:600px){.section-heading{align-items:flex-start;flex-direction:column}.profile-card{padding:1rem}}

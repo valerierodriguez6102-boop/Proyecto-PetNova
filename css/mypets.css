@@ -1,0 +1,18 @@
+/* Estilos para el módulo Mis Mascotas y Subfunciones (Pet Nova) */
+:root {
+  --primary-purple: #523f7a;
+  --soft-purple: #e2d9f3;
+  --bg-light: #f8f9fc;
+  --card-white: #ffffff;
+  --text-dark: #2b2b2b;
+  --text-muted: #6c757d;
+  --shadow-soft: 0 10px 25px rgba(82, 63, 122, 0.08);
+  --shadow-hover: 0 18px 35px rgba(82, 63, 122, 0.18);
+  --border-radius: 16px;
+}
+body { font-family: 'Montserrat', sans-serif; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding: 0; }
+.submodules-nav { display: flex; justify-content: center; gap: 12px; background: var(--card-white); padding: 8px; border-radius: 50px; box-shadow: var(--shadow-soft); max-width: 650px; margin: 20px auto; }
+.submodule-tab { padding: 10px 20px; border: none; background: transparent; border-radius: 30px; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; }
+.submodule-tab.active { background: var(--primary-purple); color: white; }
+.card-panel { background: var(--card-white); border-radius: var(--border-radius); padding: 25px; box-shadow: var(--shadow-soft); margin-bottom: 25px; }
+.post-card { border-left: 4px solid var(--primary-purple); background: #fdfbfd; padding: 15px; border-radius: 10px; margin-top: 15px; }

@@ -1,0 +1,161 @@
+/* ===== index.css · Landing page (basada en el prototipo) ===== */
+/* ===== index.css · Landing page ===== */
+/* Paleta Pet Nova: púrpura, violeta, cian y teal */
+:root{--olive:#523F7A;--olive-d:#523F7A;--sage:rgba(130,104,213,.12);--sage-2:#8268D5;--paper:#fff;--ink:#523F7A;--muted:rgba(82,63,122,.8);--line:rgba(130,104,213,.3);--alert:#523F7A;--alert-bg:rgba(130,104,213,.14);--ok:#523F7A;--accent:#0CBDDC;--teal:#00869F;--r:18px}
+/* Reinicio de márgenes */
+*{box-sizing:border-box;margin:0}
+/* Texto general y fondo */
+body{font:400 1rem/1.65 "Montserrat",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+/* Títulos con tipografía serif */
+h1,h2,h3,.logo{font-family:"Montserrat",system-ui,sans-serif;line-height:1.15}
+h1{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:700}
+h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+a{color:inherit}
+.muted{color:var(--muted)}
+/* Botones: principal, contorno y emergencia */
+.btn{display:inline-block;padding:.65rem 1.25rem;border:2px solid transparent;border-radius:999px;font:600 1rem "Montserrat",sans-serif;text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.btn-primary{background:var(--olive);color:#fff}.btn-primary:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-ghost{color:var(--olive-d);border-color:var(--olive);background:transparent}.btn-ghost:hover{background:var(--sage);border-color:var(--teal)}
+.btn-sos{background:var(--alert);color:#fff}.btn-sos:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-lg{padding:.9rem 1.7rem}
+/* Foco visible para teclado */
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+/* Elementos ocultos por JavaScript */
+[hidden]{display:none!important}
+/* Logo */
+.logo{flex:none;font-weight:700;font-size:1.5rem;color:var(--olive-d);text-decoration:none}
+.logo__image{display:block;width:160px;height:58px;object-fit:contain;background:#fff}
+/* Neutros adicionales de la landing */
+:root{--band:rgba(130,104,213,.12);--ph:rgba(12,189,220,.18);--disc:rgba(130,104,213,.16)}
+/* Texto introductorio */
+.lead{color:var(--muted);font-size:1.05rem;max-width:46ch;margin:1.2rem 0 1.8rem}
+/* Menú superior: logo, enlaces y contacto */
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:clamp(.75rem,2vw,2rem);padding:.5rem 5vw;background:rgba(255,255,255,.95);backdrop-filter:blur(8px)}
+.topbar nav{display:flex;justify-content:center;gap:clamp(.65rem,1.5vw,1.5rem);flex:1;min-width:0}
+.topbar nav a{position:relative;padding:.65rem .15rem;text-decoration:none;font-weight:500;font-size:clamp(.82rem,.9vw,.92rem);white-space:nowrap;color:var(--muted);transition:color .2s ease,transform .2s ease}
+.topbar nav a::after{content:"";position:absolute;left:0;right:0;bottom:.25rem;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.topbar nav a:hover,.topbar nav a:focus-visible{color:var(--olive-d);transform:translateY(-2px)}
+.topbar nav a:hover::after,.topbar nav a:focus-visible::after{transform:scaleX(1)}
+.topbar__contact{display:flex;align-items:center;flex:none}
+.phone{font-weight:600;font-size:.92rem;text-decoration:none}
+/* Botón de menú móvil (oculto en escritorio) */
+.menu{display:none;margin-left:auto;border:0;background:transparent;font-size:1.6rem;color:var(--olive-d);cursor:pointer}
+/* Hero: texto a la izquierda y marco tipo arco a la derecha */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:3rem;align-items:center;padding:3rem 5vw 3.5rem;max-width:1200px;margin:0 auto}
+.hero h1{max-width:15ch}
+/* Marco tipo arco / portón (superior redondeado, base recta) */
+.hero__frame{position:relative;justify-self:end;width:min(420px,100%);padding-bottom:2.5rem}
+.arch{width:78%;margin-left:auto;aspect-ratio:3/4.2;border-radius:999px 999px 0 0;background:var(--ph);display:grid;place-items:center;font-size:7rem;overflow:hidden}
+.arch img,.disc img{width:100%;height:100%;object-fit:cover}
+/* Círculo superpuesto al arco */
+.disc{position:absolute;left:0;bottom:0;width:52%;aspect-ratio:1;border-radius:50%;background:var(--disc);border:8px solid var(--paper);display:grid;place-items:center;font-size:4rem;overflow:hidden}
+/* Divisor orgánico de sección (onda) */
+.wave{height:64px;background-size:100% 100%;background-repeat:no-repeat}
+.wave--to-band{background-color:var(--paper);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23F0EDFA' d='M0 50C220 0 460 90 720 45S1200 0 1440 40V80H0Z'/%3E%3C/svg%3E")}
+.wave--to-paper{background-color:var(--band);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'%3E%3Cpath fill='%23FFFFFF' d='M0 35C240 85 520 0 780 45S1220 80 1440 30V80H0Z'/%3E%3C/svg%3E")}
+/* Bandas de fondo gris claro */
+.band{background:var(--band);padding:2.5rem 5vw;text-align:center;position:relative;overflow:hidden}
+.band h2{margin-bottom:1.2rem}
+/* Sección informativa con formas orgánicas laterales */
+.about::before,.about::after{content:"";position:absolute;border-radius:50%;background:var(--disc);z-index:0}
+.about::before{width:300px;height:300px;left:-130px;bottom:-170px}
+.about::after{width:360px;height:360px;right:-160px;top:-200px}
+.about>*{position:relative;z-index:1}
+.about p{max-width:62ch;margin:0 auto;color:var(--muted)}
+/* Secciones generales */
+.section{padding:3.5rem 5vw;max-width:1100px;margin:0 auto}
+.section>h2{text-align:center;margin-bottom:2.2rem}
+/* Cuadrícula de 3 columnas */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
+/* Tarjetas de ventajas (¿Por qué Pet Nova?) */
+.why{text-align:center;display:grid;gap:.6rem;justify-items:center}
+.badge{width:64px;height:64px;border-radius:50%;border:2px solid var(--olive);display:grid;place-items:center;font-size:1.7rem}
+.why p{color:var(--muted);font-size:.92rem;max-width:30ch}
+/* Marcador de imagen (se reemplaza por <img> cuando haya fotos) */
+.ph{background:var(--ph);border-radius:var(--r);display:grid;place-items:center;font-size:4rem;aspect-ratio:16/9;overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover}
+.service-icon{width:clamp(70px,9vw,104px);height:auto}
+.service-icon__line{fill:none;stroke:var(--olive);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.service-icon__accent{fill:none;stroke:var(--teal);stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round}
+.service-icon__accent-fill{fill:rgba(12,189,220,.22);stroke:var(--teal);stroke-width:3}
+.service-icon__line-fill{fill:var(--olive)}
+/* Servicios: filas alternas de imagen y texto */
+.service{position:relative;z-index:0;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-bottom:2.5rem;padding:1.25rem;background:#fff;border:1px solid var(--line);border-radius:var(--r);transition:transform .25s ease,box-shadow .25s ease,opacity .25s ease}
+.service:hover,.service:focus-within{z-index:2;transform:translateY(-6px);box-shadow:0 16px 32px rgba(130,104,213,.24)}
+#servicios:has(.service:hover,.service:focus-within) .service:not(:hover,:focus-within){opacity:.62}
+.service--reverse .service__text{order:-1}
+.service__text{display:grid;gap:1rem;justify-items:start}
+.service__text p{color:var(--muted)}
+/* Banner promocional con ondas */
+.promo{display:grid;gap:1.5rem;justify-items:center;padding:3rem 5vw}
+.promo::after{content:"";position:absolute;right:-110px;bottom:-190px;width:320px;height:320px;border-radius:50%;background:var(--disc)}
+.promo>*{position:relative;z-index:1;max-width:30ch}
+.promo h2{max-width:24ch}
+/* Historias con foto de mascota y comentario */
+.pet-stories__intro{text-align:center;color:var(--muted);max-width:62ch;margin:-.8rem auto 1.8rem}
+.pet-carousel{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;gap:1rem;align-items:center}
+.pet-carousel__arrow{width:48px;height:48px;display:grid;place-items:center;border:2px solid var(--olive);border-radius:50%;background:#fff;color:var(--olive-d);font-size:1.7rem;line-height:1;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.pet-carousel__arrow:hover{background:var(--olive);color:#fff;transform:scale(1.06)}
+.pet-carousel__arrow:disabled{opacity:.45;cursor:default;transform:none}
+.pet-stories__viewport{min-width:0;overflow:hidden;padding:.7rem 0}
+.pet-stories__track{position:relative;display:flex;align-items:stretch;gap:1rem;transition:transform .45s cubic-bezier(.2,.7,.25,1)}
+.pet-story{flex:0 0 min(78%,760px);display:grid;grid-template-columns:minmax(140px,.9fr) minmax(0,1.1fr);min-height:280px;overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:var(--r)}
+.pet-story__photo{position:relative;min-height:280px;overflow:hidden;background:var(--ph)}
+.pet-story__photo img{display:block;width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+.pet-story__photo figcaption{position:absolute;left:.75rem;bottom:.75rem;padding:.3rem .75rem;border-radius:999px;background:rgba(82,63,122,.9);color:#fff;font-size:.82rem;font-weight:600}
+.pet-story__content{display:grid;align-content:center;gap:.8rem;padding:1.25rem;border-left:4px solid var(--accent)}
+.pet-story__family{color:var(--teal);font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.pet-story blockquote{font-size:.96rem;font-weight:500;line-height:1.55}
+.pet-stories__dots{display:flex;justify-content:center;gap:.55rem;margin-top:1rem}
+.pet-stories__dots button{width:11px;height:11px;padding:0;border:0;border-radius:999px;background:var(--ph);cursor:pointer;transition:width .2s,background .2s}
+.pet-stories__dots button.is-active{width:28px;background:var(--teal)}
+/* Contacto y mapa */
+.contact{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:stretch}
+.contact__text h2{text-align:left;margin-bottom:1.5rem}
+.contact__text h3{margin-top:1rem;color:var(--olive-d)}
+.contact a{font-weight:600;color:var(--olive-d)}
+.map{border-radius:var(--r);overflow:hidden;background:var(--ph);min-height:320px}
+.map iframe{width:100%;height:100%;min-height:320px;border:0;display:block}
+/* Pie de página */
+.footer{background:var(--band);padding:2rem 5vw;display:grid;grid-template-columns:1.2fr 1fr auto;gap:1.5rem;align-items:center;font-size:.9rem}
+.footer p{color:var(--muted)}
+.footer__contact{display:grid;gap:.2rem}
+.footer a{text-decoration:none}
+.footer__copy{grid-column:1/-1;font-size:.8rem}
+/* Redes sociales */
+.social{display:flex;gap:.6rem}
+.social a{width:36px;height:36px;border-radius:50%;background:var(--ph);display:grid;place-items:center;font-weight:700;font-size:.8rem;color:var(--olive-d)}
+.social a:hover{background:var(--olive);color:#fff}
+.scroll-reveal{opacity:0;transform:translate3d(0,24px,0) scale(.985);transition:opacity .65s ease,transform .7s cubic-bezier(.2,.7,.25,1);transition-delay:var(--reveal-delay,0ms)}
+.scroll-reveal.is-visible{opacity:1;transform:translate3d(0,0,0) scale(1)}
+.service.scroll-reveal.is-visible:hover,.service.scroll-reveal.is-visible:focus-within{transform:translateY(-6px)}
+/* Tablet */
+@media(max-width:900px){.hero{gap:1.5rem}.service{gap:1.5rem}.contact{grid-template-columns:1fr}}
+@media(min-width:761px) and (max-width:1000px){.topbar{gap:.65rem;padding-inline:3vw}.logo__image{width:132px;height:48px}.topbar nav{gap:.65rem}.topbar nav a{font-size:.8rem}}
+/* Celular: una columna, menú desplegable y carrusel de una tarjeta */
+@media(max-width:760px){
+  .topbar{gap:1rem;flex-wrap:wrap}
+  .logo__image{width:132px;height:48px}
+  .menu{display:block}
+  .topbar nav{display:none;order:3;flex-basis:100%;flex-direction:column;gap:.2rem;padding-top:.5rem}
+  .topbar nav.open{display:flex}
+  .topbar nav a{padding:.6rem 0;border-top:1px solid var(--line)}
+  .topbar nav.open a{animation:nav-item-in .35s both}
+  .topbar nav.open a:nth-child(2){animation-delay:.04s}
+  .topbar nav.open a:nth-child(3){animation-delay:.08s}
+  .topbar nav.open a:nth-child(4){animation-delay:.12s}
+  .topbar nav.open a:nth-child(5){animation-delay:.16s}
+  .topbar__contact{order:2}.phone{display:none}
+  .hero,.service,.cols3,.footer{grid-template-columns:1fr}
+  .hero__frame{justify-self:center}
+  .service--reverse .service__text{order:0}
+  .pet-carousel{grid-template-columns:36px minmax(0,1fr) 36px;gap:.4rem}
+  .pet-carousel__arrow{width:36px;height:36px;font-size:1.35rem}
+  .pet-story{flex-basis:88%;min-height:250px}
+  .pet-story__photo{min-height:250px}
+}
+@media(max-width:560px){.pet-story{grid-template-columns:1fr;min-height:0}.pet-story__photo{min-height:220px}.pet-story__content{min-height:150px;border-left:0;border-top:4px solid var(--accent)}}
+@keyframes nav-item-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.topbar nav a,.topbar nav a::after{transition:none}.topbar nav.open a{animation:none}.service,.scroll-reveal,.pet-stories__track,.pet-carousel__arrow,.pet-stories__dots button{transition:none}.scroll-reveal{opacity:1;transform:none}.service:hover,.service:focus-within{transform:none}.pet-carousel__arrow:hover{transform:none}}
