@@ -1,0 +1,86 @@
+/* ===== login.css · Inicio de sesión y registro en 3 pasos ===== */
+/* Paleta Pet Nova: púrpura, violeta, cian y teal */
+:root{--olive:#523F7A;--olive-d:#523F7A;--sage:rgba(130,104,213,.12);--sage-2:#8268D5;--paper:#fff;--ink:#523F7A;--muted:rgba(82,63,122,.8);--line:rgba(130,104,213,.3);--alert:#523F7A;--alert-bg:rgba(130,104,213,.14);--ok:#523F7A;--accent:#0CBDDC;--teal:#00869F;--r:18px}
+/* Reinicio de márgenes */
+*{box-sizing:border-box;margin:0}
+/* Texto general y fondo */
+body{font:400 1rem/1.65 "Montserrat",system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+/* Títulos con tipografía serif */
+h1,h2,h3,.logo{font-family:"Montserrat",system-ui,sans-serif;line-height:1.15}
+h1{font-size:clamp(1.8rem,4.2vw,2.8rem);font-weight:700}
+h2{font-size:clamp(1.35rem,2.8vw,1.8rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:600}
+a{color:inherit}
+.muted{color:var(--muted)}
+/* Botones: principal, contorno y emergencia */
+.btn{display:inline-block;padding:.65rem 1.25rem;border:2px solid transparent;border-radius:999px;font:600 1rem "Montserrat",sans-serif;text-decoration:none;cursor:pointer;transition:background .15s,color .15s}
+.btn-primary{background:var(--olive);color:#fff}.btn-primary:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-ghost{color:var(--olive-d);border-color:var(--olive);background:transparent}.btn-ghost:hover{background:var(--sage);border-color:var(--teal)}
+.btn-sos{background:var(--alert);color:#fff}.btn-sos:hover{background:var(--olive-d);filter:brightness(.9)}
+.btn-lg{padding:.9rem 1.7rem}
+/* Foco visible para teclado */
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+/* Elementos ocultos por JavaScript */
+[hidden]{display:none!important}
+/* Logo */
+.logo{flex:none;font-weight:700;font-size:1.5rem;color:var(--olive-d);text-decoration:none}
+.logo__image{display:block;width:176px;height:60px;object-fit:contain;background:#fff}
+/* Pantalla dividida: panel decorativo + formulario */
+.auth{display:grid;grid-template-columns:minmax(280px,5fr) 7fr;min-height:100vh}
+/* Panel lateral verde oliva */
+.auth__side{background:#8268d5;color:#fff;padding:2rem 3rem;display:grid;gap:1.5rem;align-content:center;justify-items:center;text-align:center;position:relative;isolation:isolate;overflow:hidden}
+.auth__side .logo{color:#fff}
+.auth__side p{font:600 1.4rem/1.3 "Montserrat",system-ui,sans-serif;max-width:20ch}
+.auth__side::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 700 900' fill='none'%3E%3Cg stroke='%230CBDDC' stroke-width='28' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M650-60C620 90 535 160 410 175C300 190 265 120 315 70C365 20 430 85 380 145C330 205 245 240 245 315C245 400 355 445 450 370C520 315 535 235 630 205'/%3E%3Cpath d='M-90 610C35 605 130 665 155 760C177 845 90 870 48 815C5 760 77 705 168 735C270 770 350 850 410 950'/%3E%3Cpath d='M720 485C600 505 520 575 530 660C540 750 640 765 665 695C687 635 620 590 565 635'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat}
+.auth__side>*{position:relative;z-index:1}
+/* Marco tipo arco del panel lateral */
+.arch{width:min(220px,100%);aspect-ratio:3/4;border-radius:999px 999px 0 0;background:rgb(246,245,243);display:grid;place-items:center;overflow:hidden;border:6px solid var(--olive)}
+.arch__image{width:100%;height:100%;object-fit:contain}
+/* Zona del formulario */
+.auth__main{padding:2.5rem 5vw;max-width:640px;width:100%;margin:0 auto;display:grid;gap:1.25rem;align-content:center}
+/* Pestañas: iniciar sesión / crear cuenta */
+.tabs{display:flex;gap:.25rem;background:var(--sage);padding:.3rem;border-radius:999px;justify-self:start}
+.tab{border:0;background:transparent;padding:.5rem 1.2rem;border-radius:999px;font:600 .95rem "Montserrat",sans-serif;color:var(--olive-d);cursor:pointer}
+.tab.is-on{background:#fff;box-shadow:0 1px 3px rgba(82,63,122,.18)}
+#login-form .btn-primary{background:var(--teal)}
+#login-form .btn-primary:hover{background:#006f82}
+#register-form .btn-primary{background:var(--teal)}
+#register-form .btn-primary:hover{background:#006f82}
+#register-form input[type=file]::file-selector-button{margin-right:.5rem;padding:.5rem .75rem;border:0;border-radius:999px;background:#eee8fb;color:var(--olive-d);font:600 .8rem "Montserrat",sans-serif;cursor:pointer}
+#register-form input[type=file]::file-selector-button:hover{background:#e2d8f6}
+/* Formularios */
+form{display:grid;gap:1rem}
+label{display:grid;gap:.3rem;font-weight:600;font-size:.9rem}
+input,select,textarea{font:inherit;padding:.7rem .8rem;border:1.5px solid var(--line);border-radius:12px;background:#fff;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--olive)}
+.password-field{position:relative;display:block}
+.password-field input{padding-right:3rem}
+.password-toggle{position:absolute;top:50%;right:.65rem;transform:translateY(-50%);display:grid;place-items:center;width:2rem;height:2rem;padding:0;border:0;border-radius:50%;background:transparent;color:var(--muted);cursor:pointer}
+.password-toggle:hover{color:var(--olive-d);background:var(--sage)}
+.password-toggle svg{width:1.25rem;height:1.25rem;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.password-toggle .icon-eye-off,.password-toggle[aria-pressed="true"] .icon-eye{display:none}
+.password-toggle[aria-pressed="true"] .icon-eye-off{display:block}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+/* Indicador de pasos del registro */
+.stepper{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;counter-reset:s}
+.stepper li{counter-increment:s;font-size:.85rem;font-weight:600;color:var(--muted);border-top:4px solid var(--line);padding-top:.4rem}
+.stepper li::before{content:counter(s) ". "}
+.stepper li.current{color:var(--olive-d);border-color:var(--olive)}
+.stepper li.done{color:var(--olive-d);border-color:var(--olive-d)}
+/* Bloque de cada paso (mascota, historial, dueño) */
+fieldset{border:0;padding:0;display:grid;gap:1rem}
+legend{font:700 1.3rem "Montserrat",system-ui,sans-serif;color:var(--olive-d);margin-bottom:.8rem}
+/* Selector de foto y vista previa con la forma de arco del panel lateral */
+.photo-upload{display:grid;grid-template-columns:minmax(0,1fr) 96px;align-items:end;gap:.75rem}
+.photo-upload label{min-width:0}
+.photo-upload input[type=file]{min-width:0;padding:.5rem;font-size:.78rem}
+.preview{width:96px;aspect-ratio:3/4;border:3px solid var(--olive);border-radius:999px 999px 0 0;background:rgb(246,245,243);display:grid;place-items:center;font-size:2.4rem;overflow:hidden}
+.preview img{width:100%;height:100%;object-fit:cover}
+/* Botones Atrás / Siguiente / Crear cuenta */
+.nav{display:flex;gap:.75rem;justify-content:space-between;margin-top:.5rem}
+.nav .btn:only-child{margin-left:auto}
+/* Mensaje de error */
+.msg{padding:.6rem .8rem;border-radius:12px;background:var(--alert-bg);color:var(--alert);font-weight:600;font-size:.9rem}
+.back{color:var(--olive-d);font-weight:600}
+/* Celular: el panel lateral pasa arriba y se compacta */
+@media(max-width:800px){.auth{grid-template-columns:1fr}.auth__side{padding:1.2rem 5vw;grid-auto-flow:column;justify-content:space-between;align-items:center}.auth__side .arch{width:72px;aspect-ratio:1;border-radius:50%;border-width:3px}.auth__side p{display:none}.pair{grid-template-columns:1fr}}
