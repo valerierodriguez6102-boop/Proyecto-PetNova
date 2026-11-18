@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mis Mascotas y Módulos · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="css/mypets.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/vectorizador_de_imgenes_ia_gratis_82tcf4qeb79s5j7bquav.svg" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<div class="nav-dropdown">
+<a href="pawalert.html" class="nav-dropdown__trigger">Paw Alert</a>
+<div class="nav-dropdown__menu">
+<a href="pawalert.html">Pérdida de mascotas</a>
+<a href="pawalert.html#denuncia">Denuncias anónimas</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<a href="wecare.html" class="nav-dropdown__trigger">We Care</a>
+<div class="nav-dropdown__menu">
+<a href="wecare.html#articulos">Artículos sobre el cuidado</a>
+<a href="wecare.html#jornadas">Jornadas de vacunación</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<a href="mypets.html" class="nav-dropdown__trigger active" aria-current="page">My Pet</a>
+<div class="nav-dropdown__menu">
+<a href="mypets.html#community">Comunidad</a>
+<a href="mypets.html#planner">Paw planner</a>
+<a href="mypets.html#mapview">Huellitas al camino</a>
+<a href="moments.html">Pet moments</a>
+</div>
+</div>
+<a href="perfil.html" class="profile-avatar" id="profile-avatar" aria-label="Abrir perfil" title="Perfil"></a>
+</nav>
+</header>
+<main class="page">
+
+<!-- Pestañas de Subfunciones (Paw Planner, Community, Huellitas) -->
+<section class="submodule-section" style="margin-top: 40px;">
+  <div class="submodules-nav" role="tablist">
+    <button type="button" class="submodule-tab active" data-target="planner">Paw Planner</button>
+    <button type="button" class="submodule-tab" data-target="community">My Pet Community</button>
+    <button type="button" class="submodule-tab" data-target="mapview">Huellitas al Camino</button>
+  </div>
+
+  <!-- Contenido: Paw Planner -->
+  <div id="planner" class="submodule-content card-panel planner-panel">
+    <header class="planner-heading">
+      <div>
+        <span class="planner-eyebrow">PAW PLANNER</span>
+        <h3>Calendario de bienestar</h3>
+        <p>Organiza las citas, vacunas y cuidados de tu mascota.</p>
+      </div>
+      <button type="button" class="planner-create-button" id="planner-create">
+        <span aria-hidden="true">+</span> Crear recordatorio
+      </button>
+    </header>
+
+    <div class="planner-shell">
+      <aside class="planner-sidebar" aria-label="Resumen de la agenda">
+        <section class="planner-mini-calendar" aria-label="Selector de fecha">
+          <header class="planner-mini-calendar__header">
+            <h4 id="planner-mini-title"></h4>
+            <div class="planner-mini-calendar__nav">
+              <button type="button" data-planner-nav="-1" aria-label="Mes anterior">&lsaquo;</button>
+              <button type="button" data-planner-nav="1" aria-label="Mes siguiente">&rsaquo;</button>
+            </div>
+          </header>
+          <div class="planner-mini-weekdays" aria-hidden="true">
+            <span>Do</span><span>Lu</span><span>Ma</span><span>Mi</span><span>Ju</span><span>Vi</span><span>Sá</span>
+          </div>
+          <div class="planner-mini-grid" id="planner-mini-grid" aria-label="Fechas del mes"></div>
+        </section>
+
+        <section class="planner-upcoming">
+          <div class="planner-section-heading">
+            <h4>Próximos recordatorios</h4>
+            <span id="planner-upcoming-count">0</span>
+          </div>
+          <div id="planner-upcoming-list" class="planner-upcoming-list"></div>
+        </section>
+        <p class="planner-local-note">Tus recordatorios se guardan en este dispositivo.</p>
+      </aside>
+
+      <section class="planner-calendar" aria-label="Calendario mensual">
+        <header class="planner-calendar__toolbar">
+          <h4 id="planner-month-title" aria-live="polite"></h4>
+          <div class="planner-calendar__actions">
+            <button type="button" class="planner-today-button" id="planner-today">Hoy</button>
+            <div class="planner-calendar__nav">
+              <button type="button" data-planner-nav="-1" aria-label="Mes anterior">&lsaquo;</button>
+              <button type="button" data-planner-nav="1" aria-label="Mes siguiente">&rsaquo;</button>
+            </div>
+          </div>
+        </header>
+        <div class="planner-weekdays" aria-hidden="true">
+          <span>Domingo</span><span>Lunes</span><span>Martes</span><span>Miércoles</span><span>Jueves</span><span>Viernes</span><span>Sábado</span>
+        </div>
+        <div class="planner-calendar-grid" id="planner-calendar-grid" aria-label="Fechas del mes"></div>
+        <section class="planner-selected-day" aria-live="polite">
+          <header>
+            <h4 id="planner-selected-title"></h4>
+            <button type="button" id="planner-add-selected">+ Añadir</button>
+          </header>
+          <div id="planner-selected-events" class="planner-selected-events"></div>
+        </section>
+      </section>
+    </div>
+    <p id="planner-message" class="planner-message" role="status" aria-live="polite" hidden></p>
+
+    <dialog class="planner-dialog" id="planner-dialog" aria-labelledby="planner-dialog-title">
+      <form id="planner-form">
+        <header class="planner-dialog__header">
+          <div>
+            <span class="planner-eyebrow">NUEVO EVENTO</span>
+            <h4 id="planner-dialog-title">Añadir a tu agenda</h4>
+          </div>
+          <button type="button" class="planner-dialog__close" id="planner-close" aria-label="Cerrar">&times;</button>
+        </header>
+        <label for="reminder-title">Nombre del recordatorio
+          <input type="text" id="reminder-title" required maxlength="70" placeholder="Ej. Refuerzo antirrábico">
+        </label>
+        <label for="reminder-date">Fecha
+          <input type="date" id="reminder-date" required>
+        </label>
+        <label for="reminder-time">Hora de notificación
+          <input type="time" id="reminder-time" value="09:00" required>
+        </label>
+        <label for="reminder-category">Categoría
+          <select id="reminder-category" required>
+            <option value="Vaccines">Vacuna</option>
+            <option value="Appointments">Cita veterinaria</option>
+            <option value="Reminders">Cuidado general</option>
+          </select>
+        </label>
+        <div class="planner-form-grid">
+          <label for="reminder-importance">Importancia
+            <select id="reminder-importance" required>
+              <option value="high">Alta</option>
+              <option value="medium" selected>Media</option>
+              <option value="low">Baja</option>
+            </select>
+          </label>
+          <label for="reminder-color">Color de la tarjeta
+            <input type="color" id="reminder-color" value="#0cbddc" required>
+          </label>
+        </div>
+        <p class="planner-form-hint">Permite las notificaciones del navegador y mantén esta página abierta para recibir el aviso.</p>
+        <p id="planner-form-message" class="planner-message" role="status" aria-live="polite" hidden></p>
+        <footer class="planner-dialog__actions">
+          <button type="button" class="planner-cancel-button" id="planner-cancel">Cancelar</button>
+          <button type="submit" class="planner-save-button">Guardar recordatorio</button>
+        </footer>
+      </form>
+    </dialog>
+  </div>
+
+  <!-- Contenido: Community -->
+  <div id="community" class="submodule-content card-panel" style="display: none;">
+    <header class="community-heading">
+      <div>
+        <span class="community-eyebrow">COMUNIDAD · LA CHORRERA</span>
+        <h3>Historias con huellitas</h3>
+        <p>Comparte momentos, consejos y paseos con otras familias pet.</p>
+      </div>
+      <span class="community-example-count">3 publicaciones de ejemplo</span>
+    </header>
+
+    <div class="community-layout">
+      <section class="community-main" aria-label="Publicaciones de la comunidad">
+        <form id="community-form" class="community-composer">
+          <div class="community-composer__avatar" aria-hidden="true">TÚ</div>
+          <div class="community-composer__content">
+            <label for="community-post-type">Tipo de publicación</label>
+            <select id="community-post-type">
+              <option value="post">Publicación</option>
+              <option value="poll">Encuesta</option>
+            </select>
+            <label id="post-input-label" for="post-input">¿Qué te gustaría compartir?</label>
+            <textarea id="post-input" rows="3" required maxlength="500" placeholder="Comparte una historia, recomendación o momento especial…"></textarea>
+            <div class="community-poll-fields" id="community-poll-fields" hidden>
+              <label for="poll-option-one">Opción 1
+                <input type="text" id="poll-option-one" maxlength="80" placeholder="Escribe una opción" disabled>
+              </label>
+              <label for="poll-option-two">Opción 2
+                <input type="text" id="poll-option-two" maxlength="80" placeholder="Escribe otra opción" disabled>
+              </label>
+            </div>
+            <label class="community-image-picker" for="post-image">Adjuntar imagen (opcional)
+              <input type="file" id="post-image" accept="image/*">
+              <small>La imagen se optimiza antes de compartirla.</small>
+            </label>
+            <div class="community-composer__footer">
+              <span>Visible para usuarios con sesión iniciada.</span>
+              <button type="submit" class="btn btn-primary">Publicar</button>
+            </div>
+            <p id="community-msg" class="community-message" role="status" aria-live="polite" hidden></p>
+          </div>
+        </form>
+
+        <div id="community-feed" class="community-feed" aria-live="polite"></div>
+      </section>
+
+      <aside class="community-sidebar">
+        <article class="community-profile-card">
+          <div class="community-profile-card__cover"></div>
+          <div class="community-profile-card__body">
+            <div class="community-profile-avatar" aria-hidden="true">PN</div>
+            <span class="community-eyebrow">TU ESPACIO PET NOVA</span>
+            <h4>Una comunidad que cuida</h4>
+            <p>Ideas y experiencias para disfrutar la vida con nuestras mascotas.</p>
+            <a href="perfil.html" class="community-profile-link">Ver mi perfil</a>
+          </div>
+        </article>
+
+        <section class="community-sidebar-card">
+          <h4>Para conversar</h4>
+          <p>¿Tienes un parque favorito, un consejo de cuidado o una historia para compartir?</p>
+          <span class="community-sidebar-note">Las publicaciones de muestra están marcadas como ejemplo.</span>
+        </section>
+
+        <section class="community-sidebar-card community-up-next">
+          <h4>En la comunidad</h4>
+          <a href="#community-post-luna" class="community-up-next__item">
+            <span class="community-up-next__thumb thumb-luna" aria-hidden="true"></span>
+            <span><strong>Paseos de mañana</strong><small>Ejemplo · Ana y Luna</small></span>
+          </a>
+          <a href="#community-post-coco" class="community-up-next__item">
+            <span class="community-up-next__thumb thumb-coco" aria-hidden="true"></span>
+            <span><strong>Un día junto al mar</strong><small>Ejemplo · Luis y Coco</small></span>
+          </a>
+          <a href="#community-post-michi" class="community-up-next__item">
+            <span class="community-up-next__thumb thumb-michi" aria-hidden="true"></span>
+            <span><strong>Juegos en casa</strong><small>Ejemplo · Sofía y Michi</small></span>
+          </a>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Contenido: Huellitas al Camino -->
+  <div id="mapview" class="submodule-content card-panel" style="display: none;">
+    <div class="map-shell">
+      <div class="map-list-pane">
+        <div class="map-topbar">
+          <div class="map-heading-group">
+            <h3>Huellitas al Camino</h3>
+            <p>Encuentra lugares de La Chorrera. Algunos incluyen fotos de referencia; los datos de contacto aparecen cuando están publicados en OpenStreetMap.</p>
+          </div>
+          <div class="map-view-switch">
+            <button type="button" class="mini-button active" data-view="map">Mapa</button>
+            <button type="button" class="mini-button" data-view="list">Lista</button>
+          </div>
+        </div>
+
+        <div class="map-filters" aria-label="Filtros de lugares">
+          <button type="button" class="chip active" data-filter="all">Todos</button>
+          <button type="button" class="chip" data-filter="park">Parques</button>
+          <button type="button" class="chip" data-filter="vet">Veterinarias</button>
+          <button type="button" class="chip" data-filter="store">Tiendas</button>
+        </div>
+
+        <p id="places-status" class="places-status" role="status" aria-live="polite">Los lugares se cargarán al abrir este módulo.</p>
+        <div id="places-grid" class="property-grid" aria-live="polite"></div>
+      </div>
+
+      <aside class="map-panel">
+        <div id="map-container" class="map-canvas" aria-label="Mapa con lugares pet-friendly"></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+<script src="js/mypets.js"></script>
+</body>
+</html>

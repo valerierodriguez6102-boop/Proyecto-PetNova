@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pet Moments · Pet Nova</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/moments.css">
+<link rel="stylesheet" href="css/account-panel.css">
+</head>
+<body>
+<header class="topbar">
+<a class="logo" href="dashboard.html">
+  <img class="logo__image" src="petnova-assets/vectorizador_de_imgenes_ia_gratis_82tcf4qeb79s5j7bquav.svg" alt="Pet Nova">
+</a>
+<nav aria-label="Principal">
+<div class="nav-dropdown">
+<a href="pawalert.html" class="nav-dropdown__trigger">Paw Alert</a>
+<div class="nav-dropdown__menu">
+<a href="pawalert.html">Pérdida de mascotas</a>
+<a href="pawalert.html#denuncia">Denuncias anónimas</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<a href="wecare.html" class="nav-dropdown__trigger">We Care</a>
+<div class="nav-dropdown__menu">
+<a href="wecare.html#articulos">Artículos sobre el cuidado</a>
+<a href="wecare.html#jornadas">Jornadas de vacunación</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<a href="mypets.html" class="nav-dropdown__trigger active">My Pet</a>
+<div class="nav-dropdown__menu">
+<a href="mypets.html#community">Comunidad</a>
+<a href="mypets.html#planner">Paw planner</a>
+<a href="mypets.html#mapview">Huellitas al camino</a>
+<a href="moments.html" aria-current="page">Pet moments</a>
+</div>
+</div>
+<a href="perfil.html" class="profile-avatar" id="profile-avatar" aria-label="Abrir perfil" title="Perfil"></a>
+</nav>
+</header>
+<main class="page">
+<header class="moments-intro">
+  <span>EL ÁLBUM DE LA COMUNIDAD</span>
+  <h1>Pet Moments</h1>
+  <p>Cada foto cuenta una aventura. Descubre, celebra y comenta los momentos de nuestra comunidad.</p>
+</header>
+<form class="card upload" id="moment-form">
+  <label>Agregar una foto
+    <input type="file" name="photo" id="moment-photo" accept="image/*" required>
+  </label>
+  <label>Descripción
+    <input type="text" name="caption" maxlength="120" placeholder="Ej. Primer paseo en la playa">
+  </label>
+  <label>Álbum
+    <select name="album" id="moment-album"></select>
+  </label>
+  <label id="new-album-label" hidden>Nombre del álbum nuevo
+    <input type="text" name="newAlbum" id="new-album-name" maxlength="60" placeholder="Ej. Primer año de Luna">
+  </label>
+  <button class="btn btn-primary" type="submit" id="moment-send">Compartir momento</button>
+</form>
+<p class="photo-help">Los momentos que compartas serán visibles para toda la comunidad de Pet Nova.</p>
+<p class="mode-note" id="mode-note" hidden></p>
+<p class="msg" id="moment-msg" role="status" aria-live="polite" hidden></p>
+<section class="moments-showcase" aria-label="Álbumes de la comunidad Pet Nova">
+<div class="cf" id="cf">
+<div class="cf__top">
+<div class="cf__group">
+<button type="button" class="round is-on" id="view-book" aria-label="Vista de libro" aria-pressed="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></svg></button>
+<button type="button" class="round" id="view-grid" aria-label="Vista de cuadrícula" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></svg></button>
+</div>
+<div class="cf__scope" role="group" aria-label="Qué álbumes mostrar">
+<button type="button" class="chip is-on" data-scope="all">Comunidad</button>
+<button type="button" class="chip" data-scope="mine">Mis álbumes</button>
+</div>
+<div class="cf__group">
+<input type="search" id="album-search" class="cf__search" placeholder="Buscar álbum" aria-label="Buscar álbum" hidden>
+<button type="button" class="round" id="toggle-search" aria-label="Buscar álbum"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+<button type="button" class="round" id="new-album" aria-label="Crear álbum"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+</div>
+</div>
+<div id="cf-book-view">
+<div class="cf__title">
+<h3 id="cf-title"></h3>
+<p id="cf-meta"></p>
+</div>
+<div class="cf__stage" id="cf-stage" tabindex="0" aria-label="Álbumes. Usa las flechas del teclado para cambiar de álbum">
+<div class="cf__books" id="cf-books"></div>
+<div class="spread" id="spread"></div>
+<button type="button" class="cf__arrow cf__arrow--prev" id="cf-prev" aria-label="Álbum anterior">‹</button>
+<button type="button" class="cf__arrow cf__arrow--next" id="cf-next" aria-label="Álbum siguiente">›</button>
+</div>
+<div class="cf__actions">
+<button type="button" class="round round--light" id="act-more" aria-label="Renombrar álbum"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="18.5" cy="12" r="1.8" fill="currentColor"/></svg></button>
+<button type="button" class="round round--light" id="act-share" aria-label="Compartir álbum"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V4M8 8l4-4 4 4"/><path d="M5 13v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-6"/></svg></button>
+<button type="button" class="round round--light" id="act-delete" aria-label="Eliminar álbum"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-12M9 7V4h6v3"/></svg></button>
+<button type="button" class="round round--light" id="act-add" aria-label="Agregar una foto a este álbum"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+</div>
+</div>
+<div class="albums" id="albums" hidden></div>
+</div>
+</section>
+</main>
+<dialog class="my-dialog" id="album-dialog" aria-labelledby="album-dialog-title">
+<form class="dialog-body" id="album-form">
+<button class="dialog-close" type="button" data-close aria-label="Cerrar">×</button>
+<h2 id="album-dialog-title">Crear álbum</h2>
+<label>Nombre del álbum
+<input type="text" name="name" id="album-name" required maxlength="60" placeholder="Ej. Primer año de Luna">
+</label>
+<p class="msg" id="album-msg" role="alert" hidden></p>
+<div class="dialog-actions">
+<button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+<button class="btn btn-primary" id="album-save">Crear álbum</button>
+</div>
+</form>
+</dialog>
+<dialog class="my-dialog my-dialog--wide" id="photo-dialog" aria-label="Foto del álbum">
+<div class="dialog-body">
+<button class="dialog-close" type="button" data-close aria-label="Cerrar">×</button>
+<img class="photo-big" id="photo-big" alt="">
+<div>
+<p class="photo-cap" id="photo-cap"></p>
+<p class="photo-by" id="photo-by"></p>
+</div>
+<div class="album-interactions">
+<div class="interaction-buttons">
+<button type="button" class="like-btn" id="photo-like" aria-pressed="false">❤️ <span id="photo-likes">0</span></button>
+<span class="photo-count">💬 <span id="photo-ccount">0</span> comentarios</span>
+<button type="button" class="btn btn-ghost btn-sm" id="photo-delete" hidden>Eliminar foto</button>
+</div>
+<div class="comments-section" id="photo-comments"></div>
+<form class="comment-input-group" id="comment-form">
+<input type="text" id="comment-input" maxlength="300" placeholder="Escribe un comentario..." aria-label="Comentario">
+<button type="submit">Enviar</button>
+</form>
+</div>
+</div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<footer class="footer"><p>© Pet Nova by PetNovitasTeam · La Chorrera, Panamá Oeste</p></footer>
+<script src="js/storage.js"></script>
+<script src="js/profile-avatar.js"></script>
+<script src="js/account-panel.js"></script>
+<script src="js/moments.js"></script>
+</body>
+</html>
